@@ -25,6 +25,7 @@ func NewServer(q db.Querier) *Server {
 func (s *Server) Routes() http.Handler{
 	mux := http.NewServeMux()
 	s.registerCategoryRoutes(mux)
+	s.registerSubscriberRoutes(mux)
 	return mux
 }
 
