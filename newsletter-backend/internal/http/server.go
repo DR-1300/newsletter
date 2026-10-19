@@ -11,7 +11,10 @@ import (
 	"newsletter-backend/internal/db"
 )
 
-const pgUV = "23505"
+const (
+	pgUV = "23505"
+	pgFKV = "23503"
+)
 
 type Server struct {
 	q db.Querier
@@ -26,6 +29,7 @@ func (s *Server) Routes() http.Handler{
 	mux := http.NewServeMux()
 	s.registerCategoryRoutes(mux)
 	s.registerSubscriberRoutes(mux)
+	s.registerArticleRoutes(mux)
 	return mux
 }
 
