@@ -18,10 +18,11 @@ const (
 
 type Server struct {
 	q db.Querier
+	frontendOrigin string
 }
 
-func NewServer(q db.Querier) *Server {
-	return &Server{q:q}
+func NewServer(q db.Querier, frontendOrigin string) *Server {
+	return &Server{q:q, frontendOrigin: frontendOrigin}
 }
 
 
@@ -30,7 +31,8 @@ func (s *Server) Routes() http.Handler{
 	s.registerCategoryRoutes(mux)
 	s.registerSubscriberRoutes(mux)
 	s.registerArticleRoutes(mux)
-	return mux
+	s.registerCommentRoutes(mux)
+	return s.withCORS(mux)
 }
 
 func writeJson(w http.ResponseWriter, status int, v any) {
@@ -64,4 +66,19 @@ func decodeJson(w http.ResponseWriter, r *http.Request, dst any) bool {
 func isPgError(err error, code string) bool {
 	var pgErr *pgconn.PgError
 	return errors.As(err, &pgErr) && pgErr.Code == code
+}
+
+func (s *Server) withCORS(next http.Handler) http.Handler{
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", s.frontendOrigin)
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusNoContent)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
 }

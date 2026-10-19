@@ -39,7 +39,12 @@ func main() {
 	}
 	log.Println("connected to database")
 
-	server := api.NewServer(db.New(pool))
+	origin := os.Getenv("FRONTEND_ORIGIN")
+	if origin == "" {
+		origin = "http://localhost:3000"
+	}
+
+	server := api.NewServer(db.New(pool), origin)
 
 	log.Println("listening on :8000 :p")
 	log.Fatal(http.ListenAndServe(":8000", server.Routes()))
