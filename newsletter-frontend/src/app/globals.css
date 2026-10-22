@@ -14,3 +14,28 @@
     --font-display: var(--font-instrument), serif;
   --font-body: var(--font-plex), ui-monospace, monospace;
 }
+
+.article-body h2 {
+  @apply mt-10 mb-3 font-display text-3xl leading-tight;
+}
+.article-body h3 {
+  @apply mt-8 mb-2 font-display text-2xl leading-tight;
+}
+.article-body p {
+  @apply my-4 text-sm leading-relaxed;
+}
+.article-body ul {
+  @apply my-4 list-disc pl-5 text-sm;
+}
+.article-body ol {
+  @apply my-4 list-decimal pl-5 text-sm;
+}
+.article-body li {
+  @apply my-1;
+}
+.article-body blockquote {
+  @apply my-6 border-l-2 border-muted pl-4 text-muted;
+}
+.article-body strong {
+  @apply font-medium text-paper;
+}
