@@ -13,3 +13,9 @@ export type Article = {
     estimated_read_time: number;
      created_at: string;
 }
+
+export type Category = {
+    id: string;
+    name: string;
+    slug: string | null;
+}

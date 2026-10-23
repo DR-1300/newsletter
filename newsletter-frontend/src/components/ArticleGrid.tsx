@@ -4,7 +4,11 @@ import type { Article } from "@/lib/types";
 
 const tilts = ["-rotate-3", "rotate-2", "-rotate-1"];
 
-export default async function ArticleGrid(){
+export default async function ArticleGrid({
+    categoryId,
+}: {
+    categoryId?: string;
+}){
     let articles: Article[] = [];
     let failed = false;
 
@@ -20,6 +24,11 @@ export default async function ArticleGrid(){
             </p>
         );
     }
+
+    if (categoryId){
+        articles = articles.filter((a) => a.category_id === categoryId);
+    }
+
 
     if (articles.length==0) {
         return <p className="mt-12 text-xs text-muted">
