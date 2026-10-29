@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/admin/registration-open"
+method: POST
+headers:
+  X-Admin-Key: "{{adminKey}}"
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"open": true}'
+order: 12000

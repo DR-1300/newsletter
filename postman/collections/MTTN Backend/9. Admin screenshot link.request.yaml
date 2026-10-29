@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{baseUrl}}/api/admin/registrations/{{reg_id}}/screenshot"
+method: GET
+headers:
+  X-Admin-Key: "{{adminKey}}"
+order: 9000

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 
 const instrument = Instrument_Serif({
   variable: "--font-instrument",
@@ -25,9 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${instrument.variable} ${plex.variable} bg-ink font-body text-paper antialiased`}
+        className={`${instrument.variable} ${plex.variable} flex min-h-screen flex-col bg-ink font-body text-paper antialiased`}
       >
-        {children}
+        <SiteHeader />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   );

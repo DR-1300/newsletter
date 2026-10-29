@@ -1,4 +1,4 @@
-import type { Article, Category } from "./types";
+import type { Article, Category, Comment, Subscriber } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -25,6 +25,25 @@ export async function getCategories(): Promise<Category[]> {
   const res = await fetch(`${API_URL}/categories`, { cache: "no-store" });
   if (!res.ok) {
     throw new Error(`API error: ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function getComments(article_id: string): Promise<Comment[]> {
+  const res = await fetch(`${API_URL}/articles/${article_id}/comments`, {
+    cache: "no-store"
+  })
+
+  if (!res.ok) {
+    throw new Error(`is the api ok: ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function getSubscribers(): Promise<Subscriber[]>{
+  const res = await fetch(`${API_URL}/subscribers`, { cache: "no-store"});
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status}`)
   }
   return res.json();
 }

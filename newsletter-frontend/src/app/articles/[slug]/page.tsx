@@ -4,13 +4,15 @@ import { notFound } from "next/navigation";
 import TiptapRenderer from "@/components/TiptapRenderer";
 import { getArticle } from "@/lib/api";
 import type { Article } from "@/lib/types";
+import CommentList from "@/components/CommentList";
+import CommentForm from "@/components/CommentForm";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export default function ArticlePage({ params }: Props) {
   return (
     <main className="mx-auto min-h-screen max-w-2xl p-10">
-      <Link href="/" className="text-xs text-muted transition hover:text-paper">
+      <Link href="/articles" className="text-xs text-muted transition hover:text-paper">
         - All issues
       </Link>
 
@@ -64,6 +66,16 @@ async function ArticleContent({ params }: Props) {
       <div className="mt-10 border-t border-muted/30 pt-8">
         <TiptapRenderer content={article.contents} />
       </div>
+
+      <section className="mt-16 border-t border-muted/30 pt-8">
+      <h2 className="font-display text-3xl">Comments</h2>
+      <CommentForm articleId={article.id} />
+      <Suspense fallback={
+        <p className="mt-6 text-xs text-muted">hollup comments loading..</p>
+      }>
+        <CommentList articleId={article.id} />
+      </Suspense>
+      </section>
     </article>
   ); 
 }

@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/admin/checkin"
+method: POST
+headers:
+  X-Admin-Key: "{{adminKey}}"
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"ticket": "{{ticket_token}}"}'
+order: 10000

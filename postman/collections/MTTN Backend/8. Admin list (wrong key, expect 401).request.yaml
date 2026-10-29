@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{baseUrl}}/api/admin/registrations"
+method: GET
+headers:
+  X-Admin-Key: wrong
+order: 8000

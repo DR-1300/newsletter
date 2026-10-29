@@ -1,0 +1,8 @@
+$kind: collection
+description: ""
+variables:
+  baseUrl: http://localhost:8080
+  adminKey: PASTE_ADMIN_API_KEY
+  orcaSecret: PASTE_ORCA_SECRET
+  ticket_token: ""
+  reg_id: ""

@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/checkin/orca"
+method: POST
+headers:
+  orca-secret: "{{orcaSecret}}"
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"Barcode": "{{ticket_token}}"}'
+order: 4000

@@ -6,7 +6,7 @@
   --color-paper: #ebe5d3;
   --color-muted: #8d8a82;
   --color-signal: #3b3bd6;
-  --color-highlight: #f5e44a;
+  --color-highlight: #AB92BF;
   --color-alert: #d93636;
 }
 
@@ -38,4 +38,14 @@
 }
 .article-body strong {
   @apply font-medium text-paper;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a #111111;
+}
+
+::selection {
+  background: var(--color-highlight);
+  color: var(--color-ink);
 }

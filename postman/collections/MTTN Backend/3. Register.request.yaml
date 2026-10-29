@@ -1,0 +1,36 @@
+$kind: http-request
+url: "{{baseUrl}}/api/register"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: name
+      value: Test User
+    - type: text
+      key: phone
+      value: "9876543210"
+    - type: text
+      key: email
+      value: "{{rand_email}}"
+    - type: text
+      key: upi_txn_id
+      value: "{{rand_upi}}"
+    - type: file
+      key: screenshot
+      src: []
+scripts:
+  - type: beforeRequest
+    code: |-
+      const t = Date.now();
+      pm.variables.set('rand_email', 'test' + t + '@example.com');
+      pm.variables.set('rand_upi', 'UPI' + t);
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 201) {
+        const j = pm.response.json();
+        if (j.ticket_token) pm.collectionVariables.set('ticket_token', j.ticket_token);
+      }
+    language: text/javascript
+order: 3000
