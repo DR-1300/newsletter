@@ -36,7 +36,7 @@ type articleInput struct {
 
 func (in *articleInput) normalise() error {
 	in.Slug = strings.TrimSpace(in.Slug)
-	in.Title = strings.TrimSpace(in.Slug)
+	in.Title = strings.TrimSpace(in.Title)
 	in.Description = strings.TrimSpace(in.Description)
 
 	switch {
