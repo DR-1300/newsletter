@@ -15,6 +15,8 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const emptyDoc: JSONContent = { type: "doc", content: [{ type: "paragraph" }] };
 
+
+
 function slugify(s: string) {
   return s
     .toLowerCase()
@@ -24,7 +26,7 @@ function slugify(s: string) {
 }
 
 const field =
-  "mt-2 w-full border border-muted/40 bg-transparent px-3 py-2 text-xs text-paper placeholder:text-muted/60 focus:border-highlight focus:outline-none";
+  "mt-2 w-full border border-muted/40 bg-transparent px-3 py-2 font-body text-xs text-paper placeholder:text-muted/60 focus:border-highlight focus:outline-none";
 const labelText = "text-[10px] uppercase tracking-widest text-muted";
 
 type Props = {
@@ -108,9 +110,9 @@ export default function ArticleForm({ categories, article }: Props) {
       }
 
       const data = await res.json().catch(() => null);
-      setError(data?.error ?? "Something went wrong. Try again.");
+      setError(data?.error ?? "Bruh");
     } catch {
-      setError("Could not reach the server. Is the backend running?");
+      setError("backend TRIPPING");
     } finally {
       setLoading(false);
     }
@@ -167,7 +169,7 @@ export default function ArticleForm({ categories, article }: Props) {
           <select
             value={categoryId}
             onChange={(e) => setCategoryId(e.target.value)}
-            className={field}
+            className={`${field}`}
           >
             <option value="">No category</option>
             {categories.map((c) => (

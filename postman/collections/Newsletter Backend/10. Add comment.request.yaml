@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/articles/{{article_id}}/comments"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: '{"author_name": "Postman", "content": "Nice post!"}'
+scripts:
+  - type: afterResponse
+    code: pm.test('status is 201', () => pm.response.to.have.status(201));
+    language: text/javascript
+order: 10000

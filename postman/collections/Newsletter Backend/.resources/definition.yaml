@@ -1,0 +1,8 @@
+$kind: collection
+description: ""
+variables:
+  baseUrl: http://localhost:8000
+  category_id: ""
+  article_id: ""
+  article_slug: ""
+  sub_email: ""

@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { getArticles } from "@/lib/api";
 import type { Article } from "@/lib/types";
+import DeleteButton from "@/components/DeleteButton";
 
 const statusStyle: Record<Article["status"], string> = {
   published: "border-highlight text-highlight",
@@ -92,6 +93,7 @@ async function ArticleTable() {
                     >
                       Edit
                     </Link>
+                    <DeleteButton id={a.id} title={a.title} />
                   </td>
                 </tr>
               ))}

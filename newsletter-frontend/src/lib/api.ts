@@ -47,3 +47,8 @@ export async function getSubscribers(): Promise<Subscriber[]>{
   }
   return res.json();
 }
+
+export async function getArticleById(id: string): Promise<Article | null>{
+  const articles = await getArticles();
+  return articles.find((a) => a.id === id) ?? null;
+}

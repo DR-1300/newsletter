@@ -49,3 +49,10 @@ html {
   background: var(--color-highlight);
   color: var(--color-ink);
 }
+
+select option {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-plex), ui-monospace, monospace;
+  font-size: 0.75rem;
+}

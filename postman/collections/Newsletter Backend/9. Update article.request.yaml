@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/articles/{{article_id}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: '{"slug": "{{article_slug}}", "title": "Updated from Postman", "description": "Testing the update route", "contents": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Created through Postman"}]}]}, "tags": ["postman", "test"], "category_id": "{{category_id}}", "status": "published", "type": "newsletter", "estimated_read_time": 3}'
+scripts:
+  - type: afterResponse
+    code: pm.test('status is 200', () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 9000

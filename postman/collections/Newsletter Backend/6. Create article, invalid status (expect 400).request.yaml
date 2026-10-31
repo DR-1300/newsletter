@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/articles"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: '{"slug": "bad-status-test", "title": "Bad status", "description": "Should be rejected", "contents": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Created through Postman"}]}]}, "tags": ["postman", "test"], "status": "banana", "type": "newsletter", "estimated_read_time": 1}'
+scripts:
+  - type: afterResponse
+    code: pm.test('status is 400', () => pm.response.to.have.status(400));
+    language: text/javascript
+order: 6000
