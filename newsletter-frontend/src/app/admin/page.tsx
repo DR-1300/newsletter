@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { getArticles } from "@/lib/api";
+import { getAllArticles } from "@/lib/api";
 import type { Article } from "@/lib/types";
 import DeleteButton from "@/components/DeleteButton";
 
 const statusStyle: Record<Article["status"], string> = {
   published: "border-highlight text-highlight",
   draft: "border-muted/50 text-muted",
-  archived: "border-alert text-alert",
+  archived: "border-archived text-archived",
 };
 
 export default function AdminPage() {
@@ -24,7 +24,7 @@ export default function AdminPage() {
 async function ArticleTable() {
   let articles: Article[];
   try {
-    articles = await getArticles();
+    articles = await getAllArticles();
   } catch {
     return (
       <p className="mt-8 text-xs text-alert">

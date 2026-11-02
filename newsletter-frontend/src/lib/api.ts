@@ -10,6 +10,14 @@ export async function getArticles(): Promise<Article[]> {
   return res.json();
 }
 
+export async function getAllArticles() : Promse<Article[]> {
+  const res = await fetch(`${API_URL}/articles/all`, { cache: "no-store"})
+  if (!res.ok) {
+    throw new Error(`API error ${res.status}`);
+  }
+  return res.json()
+}
+
 export async function getArticle(slug: string): Promise<Article | null> {
   const res = await fetch(`${API_URL}/articles/${encodeURIComponent(slug)}`, {
     cache: "no-store",

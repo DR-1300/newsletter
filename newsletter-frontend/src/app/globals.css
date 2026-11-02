@@ -8,6 +8,7 @@
   --color-signal: #3b3bd6;
   --color-highlight: #AB92BF;
   --color-alert: #d93636;
+  --color-archived: #ABD1C6;
 }
 
 @theme inline {
